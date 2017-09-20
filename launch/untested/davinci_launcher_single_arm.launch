@@ -1,0 +1,8 @@
+<launch>
+
+	<include file="$(find cwru_davinci_hardware)/xml/cwru_dvrk_single_arm.launch">
+		<arg name="master" value="MTML"/>
+		<arg name="slave" value="PSM2" />
+		<arg name="config" value="$(find cwru_davinci_hardware)/share/cwru_dvrk/console-MTML-PSM2-Teleop.json"/>
+	</include>
+</launch>

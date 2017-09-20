@@ -1,0 +1,56 @@
+/* -*- Mode: Javascript; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
+{
+    "arms":
+    [
+        {
+            "name": "PSM1",
+            "type": "PSM",
+            "io": "PSM1-28084.xml",
+            "pid": "../pid/sawControllersPID-PSM.xml",
+            "kinematic": "../kinematics/psm-large-needle-driver.json"
+        }
+        ,
+        {
+            "name": "PSM2",
+            "type": "PSM",
+            "io": "PSM2-30142.xml",
+            "pid": "../pid/sawControllersPID-PSM.xml",
+            "kinematic": "../kinematics/psm-large-needle-driver.json"
+        }
+        ,
+        {
+            "name": "MTMR",
+            "type": "MTM",
+            "io": "MTMR-30593.xml",
+            "pid": "../pid/sawControllersPID-MTMR.xml",
+            "kinematic": "../kinematics/mtm.json"
+        }
+        ,
+        {
+            "name": "MTML",
+            "type": "MTM",
+            "io": "MTML-64307-foot.xml",
+            "pid": "../pid/sawControllersPID-MTML.xml",
+            "kinematic": "../kinematics/mtm.json"
+        }
+    ]
+    ,
+    "psm-teleops":
+    [
+        {
+            "master": "MTML",
+            "slave": "PSM1",
+            "rotation" : [[-1.0000,  0.0000,  0.0000],
+                          [ 0.0000, -1.0000,  0.0000],
+                          [ 0.0000,  0.0000,  1.0000]]
+        }
+        ,
+        {
+            "master": "MTMR",
+            "slave": "PSM2",
+            "rotation" : [[-1.0000,  0.0000,  0.0000],
+                          [ 0.0000, -1.0000,  0.0000],
+                          [ 0.0000,  0.0000,  1.0000]]
+        }
+    ]
+}
