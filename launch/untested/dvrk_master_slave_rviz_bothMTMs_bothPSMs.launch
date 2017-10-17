@@ -7,11 +7,11 @@
   <arg name="slave2" />      
   <arg name="config" />   
 
-  <arg name="master_model1" default="$(find dvrk_model)/model/$(arg master1).urdf.xacro" />
-  <arg name="slave_model1" default="$(find dvrk_model)/model/$(arg slave1).urdf.xacro" />
+  <arg name="master_model1" default="$(find dvrk_model)/model/$(arg master1)_erdem.urdf.xacro" />
+  <arg name="slave_model1" default="$(find dvrk_model)/model/$(arg slave1)_erdem.urdf.xacro" />
 
-  <arg name="master_model2" default="$(find dvrk_model)/model/$(arg master2).urdf.xacro" />
-  <arg name="slave_model2" default="$(find dvrk_model)/model/$(arg slave2).urdf.xacro" />
+  <arg name="master_model2" default="$(find dvrk_model)/model/$(arg master2)_erdem.urdf.xacro" />
+  <arg name="slave_model2" default="$(find dvrk_model)/model/$(arg slave2)_erdem.urdf.xacro" />
   
   <node name="dvrk_$(arg master1)_$(arg slave1)_$(arg master2)_$(arg slave2)_node"
         pkg="dvrk_robot"
@@ -84,7 +84,7 @@
   </group>
 
   <node name="rviz" pkg="rviz" type="rviz"
-     args="-d $(find dvrk_model)/rviz_config/eet_test.rviz" />
+     args="-d $(find dvrk_model)/rviz_config/$(arg master1)-$(arg slave1)-$(arg master2)-$(arg slave2).rviz" />
 
 </launch>
 

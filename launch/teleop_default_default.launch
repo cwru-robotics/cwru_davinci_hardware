@@ -1,0 +1,11 @@
+<launch>
+	<arg name="rviz" default="false" />
+	<include  file="$(find cwru_davinci_hardware)/xml/dvrk_dual_arms.xml">
+		<arg name="master1" value="MTML"/>
+		<arg name="slave1" value="PSM1" />
+		<arg name="master2" value="MTMR" />
+		<arg name="slave2" value="PSM2"/>
+		<arg name="rviz" value="$(arg rviz)"/>
+		<arg name="config" value="$(find cwru_davinci_hardware)/share/cwru_dvrk/teleop_default_default.json"/>
+	</include>
+</launch>
