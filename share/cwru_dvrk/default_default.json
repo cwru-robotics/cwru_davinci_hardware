@@ -1,0 +1,21 @@
+/* -*- Mode: Javascript; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
+{
+    "arms":
+    [
+        {
+            "name": "PSM1",
+            "type": "PSM",
+            "io": "PSM1-28084.xml",
+            "pid": "../pid/sawControllersPID-PSM.xml",
+            "kinematic": "../kinematics/psm-large-needle-driver.json"
+        }
+        ,
+        {
+            "name": "PSM2",
+            "type": "PSM",
+            "io": "PSM2-30142.xml",
+            "pid": "../pid/sawControllersPID-PSM.xml",
+            "kinematic": "../kinematics/psm-large-needle-driver.json"
+        }
+    ]
+}

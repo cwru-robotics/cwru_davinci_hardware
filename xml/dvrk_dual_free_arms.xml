@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- While this file formatted like a launch file, it is not meant to be directly called -->
+<!-- by roslaunch. Hence the file extension is .xml -->
+<launch>
+
+  <arg name="slave1" />
+  <arg name="slave2" />      
+  <arg name="config" />
+  <arg name="rviz" />   
+
+  <arg name="slave_model1" default="$(find cwru_davinci_geometry_models)/model/$(arg slave1).urdf.xacro" />
+
+  <arg name="slave_model2" default="$(find cwru_davinci_geometry_models)/model/$(arg slave2).urdf.xacro" />
+  
+  <node name="dvrk_$(arg slave1)_$(arg slave2)_node"
+        pkg="cwru_davinci_hardware"
+        type="dvrk_console_json"        
+        args="-j $(arg config)"
+        output="screen"/>
+
+
+  <group ns="/dvrk/$(arg slave1)">
+      <arg name="gui" default="false" />
+      <arg name="rate" default="20" />
+      
+      <param name="robot_description" command="rosrun xacro xacro.py $(arg slave_model1) prefix:=$(arg slave1)_"/>
+      <param name="use_gui" value="$(arg gui)"/>
+      <param name="rate" value="$(arg rate)"/>
+      
+      <rosparam param="source_list" subst_value="True">
+        [/dvrk/$(arg slave1)/state_joint_current]
+      </rosparam>
+
+      <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+      <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
+  </group>
+
+  <group ns="/dvrk/$(arg slave2)">
+      <arg name="gui" default="false" />
+      <arg name="rate" default="20" />
+      
+      <param name="robot_description" command="rosrun xacro xacro.py $(arg slave_model2) prefix:=$(arg slave2)_"/>
+      <param name="use_gui" value="$(arg gui)"/>
+      <param name="rate" value="$(arg rate)"/>
+      
+      <rosparam param="source_list" subst_value="True">
+        [/dvrk/$(arg slave2)/state_joint_current]
+      </rosparam>
+
+      <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+      <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
+  </group>
+
+  <node if="$(arg rviz)" name="rviz" pkg="rviz" type="rviz"
+     args="-d $(find cwru_davinci_geometry_models)/rviz_config/$(arg slave1)-$(arg slave2).rviz" />
+
+</launch>
+
+
